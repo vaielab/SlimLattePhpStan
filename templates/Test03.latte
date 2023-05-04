@@ -1,0 +1,8 @@
+
+<h1>Hello World!</h1>
+<h2>{$title}</h2>
+<ul n:if="$items">
+    {foreach $items as $item}
+        <li id="item-{$iterator->counter}" class="{$item}">{$item|capitalize}</li>
+    {/foreach}
+</ul>

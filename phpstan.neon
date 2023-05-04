@@ -1,0 +1,16 @@
+parameters:
+	level: 8
+	paths:
+		- ./Controllers
+		- ./templates
+		- ./public
+	latte:
+		reportUnanalysedTemplates: true
+		resolveAllPossiblePaths: true
+
+services:
+  - App\Renderer\TemplateResolver
+
+
+includes:
+	- ./vendor/efabrica/phpstan-latte/rules.neon
