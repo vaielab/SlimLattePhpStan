@@ -17,6 +17,10 @@ use PHPStan\Type\ObjectType;
 
 final class TemplateResolver implements NodeLatteTemplateResolverInterface
 {
+    private const ACTUAL_CLASS = 'actual_class';
+
+    private const ACTUAL_METHOD = 'actual_method';
+
     private const PATHS = 'paths';
 
     private const VARIABLES = 'variables';
@@ -47,6 +51,8 @@ final class TemplateResolver implements NodeLatteTemplateResolverInterface
 
         return [
             new CollectedResolvedNode(self::class, $scope->getFile(), [
+                self::ACTUAL_CLASS => $scope->getClassReflection()->getName(),
+                self::ACTUAL_METHOD => $scope->getFunctionName(),
                 self::PATHS => $this->getPaths($node, $scope),
                 self::VARIABLES => $this->getVariables($node, $scope),
             ]),
@@ -62,7 +68,7 @@ final class TemplateResolver implements NodeLatteTemplateResolverInterface
         $templates = [];
         foreach ($paths as $path) {
             $templateContext = new TemplateContext($variables);
-            $templates[] = new Template($path, null, null, $templateContext);
+            $templates[] = new Template($path, $params[self::ACTUAL_CLASS], $params[self::ACTUAL_METHOD], $templateContext);
         }
 
         return new LatteTemplateResolverResult($templates);
