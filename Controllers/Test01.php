@@ -6,7 +6,7 @@ use Latte\Engine;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
-class Test01
+class Test01 extends MyController
 {
     public function __construct(private Engine $engine)
     {

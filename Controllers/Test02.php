@@ -6,7 +6,7 @@ use App\Renderer\TemplateRenderer;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
-class Test02
+class Test02 extends MyController
 {
     public function __construct(private TemplateRenderer $renderer)
     {

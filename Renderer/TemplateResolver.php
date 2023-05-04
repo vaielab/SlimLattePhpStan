@@ -8,12 +8,12 @@ final class TemplateResolver extends AbstractClassMethodTemplateResolver
 {
     public function getSupportedClasses(): array
     {
-        return ['App\Renderer\TemplateRenderer'];
+        return ['App\Controllers\MyController'];
     }
 
     protected function getClassMethodPattern(): string
     {
-        return '/^template$/';
+        return '/^index$/';
     }
 }
 

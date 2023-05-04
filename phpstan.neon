@@ -4,6 +4,7 @@ parameters:
 		- ./Controllers
 		- ./templates
 		- ./public
+		- ./compiledTemplates
 	latte:
 		reportUnanalysedTemplates: true
 		resolveAllPossiblePaths: true
