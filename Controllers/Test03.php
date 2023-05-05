@@ -18,7 +18,7 @@ class Test03 extends MyController
 
         // Missing $items variable
 
-        return $this->renderer->template($response, 'Test03.latte', ['title' => 'From Test02']);
+        return $this->renderer->template($response, __DIR__ . '/../templates/Test03.latte', ['title' => 'From Test02']);
 
         
     }

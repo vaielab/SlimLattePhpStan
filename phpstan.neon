@@ -4,14 +4,13 @@ parameters:
 		- ./Controllers
 		- ./templates
 		- ./public
-		- ./compiledTemplates
 	latte:
 		reportUnanalysedTemplates: true
 		resolveAllPossiblePaths: true
 
 services:
   - App\Renderer\TemplateResolver
-
+  - App\Renderer\TemplateRendererCollector
 
 includes:
 	- ./vendor/efabrica/phpstan-latte/rules.neon

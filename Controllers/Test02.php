@@ -16,7 +16,7 @@ class Test02 extends MyController
     {
         $items = ['one', 'two', 'three', 'Héllo', 'a@\'t"esté'];
 
-        return $this->renderer->template($response, 'Test02.latte', ['items' => $items, 'title' => 'From Test02']);
+        return $this->renderer->template($response, __DIR__ . '/../templates/Test02.latte', ['items' => $items, 'title' => 'From Test02']);
 
         
     }
