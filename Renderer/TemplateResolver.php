@@ -1,19 +1,22 @@
 <?php
 namespace App\Renderer;
 
-use Efabrica\PHPStanLatte\LatteContext\Resolver\LatteContextResolverInterface;
 use Efabrica\PHPStanLatte\LatteTemplateResolver\AbstractClassMethodTemplateResolver;
 
 final class TemplateResolver extends AbstractClassMethodTemplateResolver
 {
     public function getSupportedClasses(): array
     {
-        return ['App\Controllers\MyController'];
+        return ['object'];
+    }
+
+    protected function getClassNamePattern(): string
+    {
+        return '/^App\\\\(Controllers|Renderer)\\\\.*$/';
     }
 
     protected function getClassMethodPattern(): string
     {
-        return '/^index$/';
+        return '/^(index|template)$/';
     }
 }
-

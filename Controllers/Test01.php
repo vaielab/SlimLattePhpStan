@@ -15,7 +15,7 @@ class Test01 extends MyController
     public function index(Request $request, Response $response): Response
     {
         $items = ['one', 'two', 'three', 'Héllo', 'a@\'t"esté'];
-        $string = $this->engine->renderToString('Test01.latte', ['items' => $items, 'title' => 'From Test01']);
+        $string = $this->engine->renderToString(__DIR__ . '/../templates/Test01.latte', ['items' => $items, 'title' => 'From Test01']);
         $response->getBody()->write($string);
         return $response;
     }
