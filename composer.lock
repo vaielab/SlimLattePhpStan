@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "210852ba777220f0a14f533614c8eaf6",
+    "content-hash": "de95a508fe3ab4905e2d9c2c89b1b474",
     "packages": [
         {
             "name": "fig/http-message-util",
@@ -1037,16 +1037,16 @@
     "packages-dev": [
         {
             "name": "efabrica/phpstan-latte",
-            "version": "0.11.0",
+            "version": "dev-main",
             "source": {
                 "type": "git",
                 "url": "https://github.com/efabrica-team/phpstan-latte.git",
-                "reference": "ebad37eb6ad3217daca944e4c3bcca8c2c72408d"
+                "reference": "f0264397d5fd0c2afad9eff7163cf48ae3366ea0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/efabrica-team/phpstan-latte/zipball/ebad37eb6ad3217daca944e4c3bcca8c2c72408d",
-                "reference": "ebad37eb6ad3217daca944e4c3bcca8c2c72408d",
+                "url": "https://api.github.com/repos/efabrica-team/phpstan-latte/zipball/f0264397d5fd0c2afad9eff7163cf48ae3366ea0",
+                "reference": "f0264397d5fd0c2afad9eff7163cf48ae3366ea0",
                 "shasum": ""
             },
             "require": {
@@ -1067,6 +1067,7 @@
                 "phpunit/phpunit": "^9.5",
                 "spaze/phpstan-disallowed-calls": "^2.11"
             },
+            "default-branch": true,
             "type": "library",
             "extra": {
                 "phpstan": {
@@ -1089,9 +1090,9 @@
             ],
             "support": {
                 "issues": "https://github.com/efabrica-team/phpstan-latte/issues",
-                "source": "https://github.com/efabrica-team/phpstan-latte/tree/0.11.0"
+                "source": "https://github.com/efabrica-team/phpstan-latte/tree/main"
             },
-            "time": "2023-05-02T08:50:55+00:00"
+            "time": "2023-05-05T08:43:39+00:00"
         },
         {
             "name": "nette/finder",
@@ -1358,9 +1359,18 @@
             "time": "2023-04-12T14:11:53+00:00"
         }
     ],
-    "aliases": [],
+    "aliases": [
+        {
+            "package": "efabrica/phpstan-latte",
+            "version": "dev-main",
+            "alias": "0.11.1",
+            "alias_normalized": "0.11.1.0"
+        }
+    ],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "efabrica/phpstan-latte": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],

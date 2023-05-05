@@ -12,6 +12,6 @@
     },
     "require-dev": {
         "phpstan/phpstan": "^1.10",
-        "efabrica/phpstan-latte": "^0.11.0"
+        "efabrica/phpstan-latte": "dev-main as 0.11.1"
     }
 }

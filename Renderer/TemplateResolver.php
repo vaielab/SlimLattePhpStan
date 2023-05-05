@@ -1,9 +1,9 @@
 <?php
+
 namespace App\Renderer;
 
 use Efabrica\PHPStanLatte\Collector\CollectedData\CollectedResolvedNode;
 use Efabrica\PHPStanLatte\LatteContext\LatteContext;
-use Efabrica\PHPStanLatte\LatteContext\LatteContextHelper;
 use Efabrica\PHPStanLatte\LatteTemplateResolver\LatteTemplateResolverResult;
 use Efabrica\PHPStanLatte\LatteTemplateResolver\NodeLatteTemplateResolverInterface;
 use Efabrica\PHPStanLatte\Resolver\NameResolver\NameResolver;
@@ -22,8 +22,6 @@ final class TemplateResolver implements NodeLatteTemplateResolverInterface
     private const ACTUAL_METHOD = 'actual_method';
 
     private const PATHS = 'paths';
-
-    private const VARIABLES = 'variables';
 
     public function __construct(
         private NameResolver $nameResolver,
@@ -54,7 +52,6 @@ final class TemplateResolver implements NodeLatteTemplateResolverInterface
                 self::ACTUAL_CLASS => $scope->getClassReflection()->getName(),
                 self::ACTUAL_METHOD => $scope->getFunctionName(),
                 self::PATHS => $this->getPaths($node, $scope),
-                self::VARIABLES => $this->getVariables($node, $scope),
             ]),
         ];
     }
@@ -63,12 +60,16 @@ final class TemplateResolver implements NodeLatteTemplateResolverInterface
     {
         $params = $resolvedNode->getParams();
         $paths = $params[self::PATHS] ?? [];
-        $variables = $params[self::VARIABLES] ?? [];
+
+        $class = $params[self::ACTUAL_CLASS];
+        $method = $params[self::ACTUAL_METHOD];
+
+        $variables = $latteContext->variableFinder()->find($class, $method);
 
         $templates = [];
         foreach ($paths as $path) {
             $templateContext = new TemplateContext($variables);
-            $templates[] = new Template($path, $params[self::ACTUAL_CLASS], $params[self::ACTUAL_METHOD], $templateContext);
+            $templates[] = new Template($path, $class, $method, $templateContext);
         }
 
         return new LatteTemplateResolverResult($templates);
@@ -91,20 +92,6 @@ final class TemplateResolver implements NodeLatteTemplateResolverInterface
             $fullPaths[] = __DIR__ . '/../templates/' . $path;
         }
         return $fullPaths;
-    }
-
-    private function getVariables(MethodCall $methodCall, Scope $scope): array
-    {
-        $secondArg = $methodCall->getArgs()[1] ?? null;
-        if ($secondArg === null) {
-            return [];
-        }
-
-        $variables = [];
-        foreach (LatteContextHelper::variablesFromType($scope->getType($secondArg->value)) as $variable) {
-            $variables[$variable->getName()] = $variable;
-        }
-        return $variables;
     }
 }
 
